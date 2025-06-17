@@ -1,4 +1,3 @@
-// ParamSection.tsx
 import React from 'react';
 import { Plus, X } from 'lucide-react';
 import type { KeyValuePair } from './types';

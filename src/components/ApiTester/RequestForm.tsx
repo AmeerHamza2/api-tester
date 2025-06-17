@@ -1,4 +1,3 @@
-// src/components/ApiTester/RequestForm.tsx
 import React from 'react';
 
 interface RequestFormProps {
