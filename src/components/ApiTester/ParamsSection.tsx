@@ -1,3 +1,4 @@
+// ParamSection.tsx
 import React from 'react';
 import { Plus, X } from 'lucide-react';
 import type { KeyValuePair } from './types';
@@ -24,59 +25,21 @@ export const ParamsSection: React.FC<ParamsSectionProps> = ({ params, onChange, 
   };
 
   return (
-    <div style={{ padding: '20px', backgroundColor: 'white' }}>
-      <div style={{ 
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr auto auto',
-        gap: '12px',
-        alignItems: 'center',
-        marginBottom: '16px',
-        paddingBottom: '8px',
-        borderBottom: '1px solid #e5e7eb'
-      }}>
-        <span style={{ 
-          fontSize: '14px', 
-          fontWeight: '600', 
-          color: '#374151'
-        }}>
+    <div className="p-5 bg-white">
+      {/* Header Row */}
+      <div className="grid grid-cols-[1fr_1fr_auto_auto] gap-3 items-center mb-4 pb-2 border-b border-gray-200">
+        <span className="text-sm font-semibold text-gray-700">
           Key
         </span>
-        <span style={{ 
-          fontSize: '14px', 
-          fontWeight: '600', 
-          color: '#374151'
-        }}>
+        <span className="text-sm font-semibold text-gray-700">
           Value
         </span>
-        <span style={{ 
-          fontSize: '14px', 
-          fontWeight: '600', 
-          color: '#374151'
-        }}>
+        <span className="text-sm font-semibold text-gray-700">
           Actions
         </span>
         <button
           onClick={addParam}
-          style={{
-            padding: '8px 16px',
-            backgroundColor: '#f9fafb',
-            border: '1px solid #d1d5db',
-            borderRadius: '6px',
-            fontSize: '14px',
-            fontWeight: '500',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '6px',
-            color: '#374151',
-            transition: 'all 0.2s'
-          }}
-          onMouseOver={(e) => {
-            e.currentTarget.style.backgroundColor = '#f3f4f6';
-          }}
-          onMouseOut={(e) => {
-            e.currentTarget.style.backgroundColor = '#f9fafb';
-          }}
+          className="px-4 py-2 bg-gray-50 border border-gray-300 rounded-md text-sm font-medium cursor-pointer flex items-center gap-1.5 text-gray-700 transition-all duration-200 hover:bg-gray-100"
         >
           <Plus size={16} />
           Add
@@ -84,90 +47,32 @@ export const ParamsSection: React.FC<ParamsSectionProps> = ({ params, onChange, 
       </div>
 
       {/* Parameters Grid */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+      <div className="flex flex-col gap-2">
         {params.map((param) => (
           <div 
             key={param.id} 
-            style={{ 
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr auto auto',
-              gap: '12px',
-              alignItems: 'center'
-            }}
+            className="grid grid-cols-[1fr_1fr_auto_auto] gap-3 items-center"
           >
             <input
               type="text"
               placeholder="Key"
               value={param.key}
               onChange={(e) => updateParam(param.id, 'key', e.target.value)}
-              style={{
-                padding: '10px 12px',
-                border: '1px solid #d1d5db',
-                borderRadius: '6px',
-                fontSize: '14px',
-                outline: 'none',
-                transition: 'border-color 0.2s'
-              }}
-              onFocus={(e) => {
-                e.target.style.borderColor = '#3b82f6';
-                e.target.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.1)';
-              }}
-              onBlur={(e) => {
-                e.target.style.borderColor = '#d1d5db';
-                e.target.style.boxShadow = 'none';
-              }}
+              className="px-3 py-2.5 border border-gray-300 rounded-md text-sm outline-none transition-all duration-200 focus:border-blue-500 focus:ring-3 focus:ring-blue-500/10"
             />
             <input
               type="text"
               placeholder="Value"
               value={param.value}
               onChange={(e) => updateParam(param.id, 'value', e.target.value)}
-              style={{
-                padding: '10px 12px',
-                border: '1px solid #d1d5db',
-                borderRadius: '6px',
-                fontSize: '14px',
-                outline: 'none',
-                transition: 'border-color 0.2s'
-              }}
-              onFocus={(e) => {
-                e.target.style.borderColor = '#3b82f6';
-                e.target.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.1)';
-              }}
-              onBlur={(e) => {
-                e.target.style.borderColor = '#d1d5db';
-                e.target.style.boxShadow = 'none';
-              }}
+              className="px-3 py-2.5 border border-gray-300 rounded-md text-sm outline-none transition-all duration-200 focus:border-blue-500 focus:ring-3 focus:ring-blue-500/10"
             />
-            <span style={{ 
-              fontSize: '14px', 
-              color: '#6b7280',
-              width: '60px',
-              textAlign: 'center'
-            }}>
+            <span className="text-sm text-gray-500 w-15 text-center">
               {/* Actions column spacer */}
             </span>
             <button
               onClick={() => removeParam(param.id)}
-              style={{
-                width: '36px',
-                height: '36px',
-                backgroundColor: '#fef2f2',
-                border: '1px solid #fecaca',
-                borderRadius: '6px',
-                color: '#dc2626',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                transition: 'all 0.2s'
-              }}
-              onMouseOver={(e) => {
-                e.currentTarget.style.backgroundColor = '#fee2e2';
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.backgroundColor = '#fef2f2';
-              }}
+              className="w-9 h-9 bg-red-50 border border-red-200 rounded-md text-red-600 cursor-pointer flex items-center justify-center transition-all duration-200 hover:bg-red-100"
             >
               <X size={16} />
             </button>
@@ -177,33 +82,13 @@ export const ParamsSection: React.FC<ParamsSectionProps> = ({ params, onChange, 
 
       {/* Empty State */}
       {params.length === 0 && (
-        <div style={{ 
-          textAlign: 'center', 
-          padding: '40px 20px',
-          color: '#6b7280'
-        }}>
-          <div style={{ marginBottom: '12px', fontSize: '16px' }}>
+        <div className="text-center py-10 px-5 text-gray-500">
+          <div className="mb-3 text-base">
             No parameters added yet.
           </div>
           <button
             onClick={addParam}
-            style={{
-              padding: '10px 20px',
-              backgroundColor: '#3b82f6',
-              color: 'white',
-              border: 'none',
-              borderRadius: '6px',
-              fontSize: '14px',
-              fontWeight: '500',
-              cursor: 'pointer',
-              transition: 'background-color 0.2s'
-            }}
-            onMouseOver={(e) => {
-              e.currentTarget.style.backgroundColor = '#2563eb';
-            }}
-            onMouseOut={(e) => {
-              e.currentTarget.style.backgroundColor = '#3b82f6';
-            }}
+            className="px-5 py-2.5 bg-blue-500 text-white border-none rounded-md text-sm font-medium cursor-pointer transition-colors duration-200 hover:bg-blue-600"
           >
             Add your first parameter
           </button>
@@ -211,26 +96,15 @@ export const ParamsSection: React.FC<ParamsSectionProps> = ({ params, onChange, 
       )}
 
       {/* Validation Errors */}
-      {errors.length > 0 && (
-        <div style={{
-          marginTop: '16px',
-          padding: '12px 16px',
-          backgroundColor: '#fef2f2',
-          border: '1px solid #fecaca',
-          borderRadius: '8px',
-          borderLeft: '4px solid #dc2626'
-        }}>
-          <div style={{ fontSize: '14px', color: '#dc2626' }}>
-            <div style={{ fontWeight: '600', marginBottom: '4px' }}>
+      {params.length > 0 && errors.length > 0 && (
+        <div className="mt-4 px-4 py-3 bg-red-50 border border-red-200 rounded-lg border-l-4 border-l-red-600">
+          <div className="text-sm text-red-600">
+            <div className="font-semibold mb-1">
               Validation Errors:
             </div>
-            <ul style={{ 
-              margin: '0', 
-              paddingLeft: '20px',
-              listStyle: 'disc'
-            }}>
+            <ul className="m-0 pl-5 list-disc">
               {errors.map((error, index) => (
-                <li key={index} style={{ marginBottom: '2px' }}>
+                <li key={index} className="mb-0.5">
                   {error}
                 </li>
               ))}
