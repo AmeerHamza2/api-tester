@@ -91,7 +91,7 @@ export const ApiTester: React.FC = () => {
 
   const paramsErrors = validateKeyValuePairs(request.params);
   const headersErrors = validateKeyValuePairs(request.headers);
-  const { isValid: isJsonValid, error: jsonError } = validateJson(request.body);
+  const { error: jsonError } = validateJson(request.body);
 
   const renderTabContent = () => {
     switch (activeTab) {
